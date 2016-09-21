@@ -39,7 +39,11 @@ body div {
 	border-top-right-radius: 500px;
 	/*border-radius: 50px;*/
 }
+.head:hover {
 
+	transform: rotate(-6deg) translate(-4px, -8px);
+
+}
 .body{
 	clear: both;
 	margin:20px auto;
