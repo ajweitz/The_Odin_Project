@@ -1,0 +1,83 @@
+.mainFrame{
+	position: relative;
+	/*margin-top: 5px;*/
+	width: 90%;
+	margin: 0 auto;
+}
+
+.buttons{
+	/*width: 100%;*/
+	width: 30%;
+	/*position: relative;*/
+	margin: 0 auto;
+}
+
+.buttons > button{
+
+	/*display: inline-block;*/
+	margin :0 auto;
+	/*left: 50%*/
+	width: 49.5%;
+	height: 40px;
+	font:arial,sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+	background-color:#CDC9FF;
+	color:#0B003A;
+	border-color:#1D00A2; 
+	letter-spacing: 1.5px;
+}
+.sketchpad{
+	border-style: solid;
+	position: relative;
+	top:10px;
+	width:830px;
+	margin: 0 auto;
+}
+.colorPicker{
+	position: relative;
+
+	margin: 0 auto;
+	top: 20px;
+	width:25%;
+	height:30px;
+	margin-bottom: 20px;
+}
+
+.buttons > button:hover{
+	background-color:#A3A0CB;
+}
+
+.pixel {
+	border-style: dashed;
+	box-sizing: border-box;
+	display: inline-flex;
+	/*background-color: brown; */
+	border-color: #cac0c0;
+	border-width: 1px;
+}
+
+.sketchpad ul{
+	list-style-type: none;
+	padding: 0;
+	margin:0;
+	line-height: 0;
+}
+
+.colorPicker > div{
+	display: inline-flex;
+	border-style: solid;
+
+	width: 10%;
+	height: 100%;
+	/*top: 10px;*/
+}
+.mouseOverPixel{
+	background-color: black;
+
+}
+
+
+.clickPixel{
+	
+}
