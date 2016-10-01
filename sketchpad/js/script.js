@@ -1,5 +1,5 @@
 
-const padSize = 830;
+const padSize = 831;
 const defaultPixelAmount = 16;
 const maxPixels=30; 
 const defaultPenColor="black";

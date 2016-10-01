@@ -17,7 +17,7 @@
 	/*display: inline-block;*/
 	margin :0 auto;
 	/*left: 50%*/
-	width: 49.5%;
+	width: 49.4%;
 	height: 40px;
 	font:arial,sans-serif;
 	font-weight: bold;
@@ -31,7 +31,7 @@
 	border-style: solid;
 	position: relative;
 	top:10px;
-	width:830px;
+	width:831px;
 	margin: 0 auto;
 }
 .colorPicker{
@@ -50,6 +50,7 @@
 
 .pixel {
 	border-style: dashed;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	display: inline-flex;
 	/*background-color: brown; */
@@ -68,7 +69,7 @@
 	display: inline-flex;
 	border-style: solid;
 
-	width: 10%;
+	width: 9%;
 	height: 100%;
 	/*top: 10px;*/
 }
