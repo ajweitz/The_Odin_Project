@@ -18,6 +18,7 @@ class GameController
 	end
 
 	def self.build(size=DEFAULT_SIZE)
+		puts "New game started"
 		view = BoardView.build(size)
 		view.redraw
 		new(view, GameModel.build(size), FIRST_TURN)
@@ -27,7 +28,21 @@ class GameController
 
 		w = str[/[0-9]/].to_i-1
 		h = (str[/[[:alpha:]]/].downcase.ord - "a".ord).to_i
+		# print w,h
 		set_cell(w,h,@turn)
+
+		winner = @model.check_winner
+		unless winner == :game_in_progress
+			case winner
+			when :draw
+				puts "Game ended in draw"
+			when :x
+				puts "X is the winner"
+			when :o
+				puts "O is the winner"				
+			end
+			game_ended = true
+		end
 
 	rescue StandardError	
 		print "Failed to parse the command, try again\n"
@@ -36,7 +51,8 @@ class GameController
 		toggle_turn
 	ensure
 		@view.redraw
-		return [w,h]
+		return :end_game if game_ended
+		[w,h]	
 	end
 
 	

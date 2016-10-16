@@ -1,9 +1,9 @@
 class Player
 	attr_accessor :name
+		@@played = []
 	def initialize name, robot
 		@name = name
 		@robot = robot
-		@@played = []
 	end
 
 	def self.build(name, robot=false)
@@ -11,7 +11,17 @@ class Player
 	end
 
 	def play
-		move = gets.chomp
+		if @robot
+			loop do 
+				h = rand(0..2)
+				w = rand(1..3)
+				h_char = (h+'a'.ord).chr
+				return "#{w}#{h_char}"unless @@played.include?([w,h_char])
+			end
+
+		else
+			move = gets.chomp
+		end
 	end
 
 	def played_move move
@@ -20,6 +30,10 @@ class Player
 
 	def self.played
 		@@played
+	end
+
+	def self.reset
+		@@played = []
 	end
 
 	def to_s
