@@ -3,7 +3,8 @@ require './view'
 
 class Controller
 
-	attr_reader :width
+	attr_reader :width, :view
+	attr_accessor :model
 
 	DEFAULT_WIDTH = 4
 	NUM_OF_SYMBOLS = 6
@@ -27,6 +28,10 @@ class Controller
 
 	def attempts
 		@model.attempts
+	end
+
+	def symbols
+		Model.SYMBOLS
 	end
 
 end
