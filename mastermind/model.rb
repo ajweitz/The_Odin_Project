@@ -5,11 +5,12 @@ class Model
 	MATCH = :O
 	FULL_MATCH = :X
 
-	attr_reader :code, :guesses
-	
+	attr_reader :code, :guesses, :width
+
 	def initialize width, code
-		@width=4
+		@width=width
 		@code = code
+		# puts @code.inspect
 		@guesses = []
 	end
 
@@ -17,10 +18,26 @@ class Model
 		new(width,code.take(width))
 	end
 
-	def guess(user_code)
+	def guess?(user_code)
 		matches = calculateDiffs(user_code).sort.reverse
 		@guesses << [user_code,matches]
 		matches.count(FULL_MATCH) == DEFAULT_WIDTH ? true : false
+	end
+
+	def self.SYMBOLS
+		SYMBOLS
+	end
+
+	def self.MATCH
+		MATCH
+	end
+
+	def self.FULL_MATCH
+		FULL_MATCH
+	end
+
+	def attempts
+		@guesses.size
 	end
 
 	private
