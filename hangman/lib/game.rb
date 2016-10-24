@@ -1,20 +1,27 @@
 
+require 'json'
+
 class Game
 
 	DEFAULT_ALLOWED_GUESSES = 9
+	JSON_FILE = File.expand_path(File.dirname(__FILE__))+"/../data/saved_game.json"
 
 	attr_reader :used_letters, :allowed_guesses, :mistakes, :word
 
-	def initialize word, allowed_guesses
+	def initialize word, allowed_guesses, mistakes, guessed_letters, used_letters
 		@word = word
 		@allowed_guesses = allowed_guesses
-		@mistakes = 0
-		@guessed_letters = Array.new(word.size)
-		@used_letters = []
+		@mistakes = mistakes
+		@guessed_letters = guessed_letters
+		@used_letters = used_letters
 	end
 
 	def self.build word, allowed_guesses = DEFAULT_ALLOWED_GUESSES
-		new word, allowed_guesses
+		new word, allowed_guesses, 0, Array.new(word.size), []
+	end
+
+	def self.build_from_json file = JSON_FILE
+		from_json(File.read(file))
 	end
 
 	def guess letter
@@ -33,7 +40,25 @@ class Game
 		puts
 	end
 
+	def save_game(file = JSON_FILE)
+		File.open(file, 'w') { |file| file.write(to_json) }
+	end
+
 	private 
+	def to_json
+		JSON.dump ({
+			:word => @word,
+			:allowed_guesses => @allowed_guesses,
+			:mistakes => @mistakes,
+			:guessed_letters => @guessed_letters,
+			:used_letters => @used_letters
+			})
+	end
+
+	def self.from_json(string)
+		data = JSON.load string
+		self.new(data['word'],data["allowed_guesses"],data["mistakes"],data["guessed_letters"],data["used_letters"])
+	end
 
 	def letter?(lookAhead)
   	lookAhead =~ /^[[:alpha:]]$/

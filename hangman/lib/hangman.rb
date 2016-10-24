@@ -2,19 +2,34 @@ require_relative './word_generator'
 require_relative './game'
 
 
+def print_state(game)
+	game.draw
+	game.used_letters.sort.each_with_index do |l,i| 
+		print l
+		i != (game.used_letters.length - 1) ? print(", ") : puts("")
+	end
+end
 
+puts "Do you want to load last saved game?"
+game = gets.chomp[/[[:alpha:]]/].downcase == "y" ? Game.build_from_json : Game.build(WordGenerator.build.word)
 
 loop do
-game = Game.build(WordGenerator.build.word)
-puts "Guess the word by entering the letters, you can have up to #{game.allowed_guesses} guesses"
+	if game.used_letters.empty?
+		puts "Guess the word by entering the letters, you can have up to #{game.allowed_guesses} guesses"
+	else
+		print_state(game)
+	end
 	begin
 		
-	while game.guess(gets.chomp)
-		game.draw
-		game.used_letters.sort.each_with_index do |l,i| 
-			print l
-			i != (game.used_letters.length - 1) ? print(", ") : puts("")
+	loop do 
+		input = gets.chomp
+		if input == "save"
+			game.save_game
+			redo
 		end
+
+		break unless game.guess(input)
+		print_state(game)
 		puts "GUESSES LEFT: #{game.allowed_guesses - game.mistakes}"
 	end
 	game.draw
@@ -31,4 +46,5 @@ puts "Guess the word by entering the letters, you can have up to #{game.allowed_
 		puts "Please enter a letter"
 		retry
 	end
+game = Game.build(WordGenerator.build.word)
 end
