@@ -22,9 +22,9 @@ class Response
 
 	def to_s
 
-		response = "#{@protocol} #{@code} #{@status}\n"
-		@headers.each{ |h| response+= h + "\n" }
-		response+= "\n"+@body
+		response = "#{@protocol} #{@code} #{@status}\r\n"
+		@headers.each{ |h| response+= h + "\r\n" }
+		response+= "\r\n"+@body
 		response
 	end
 

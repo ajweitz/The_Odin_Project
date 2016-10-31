@@ -3,7 +3,9 @@ module Mapping
 
 	FILES = 
 		{
-			"/index.html" => "./html/index.html", 
+			"/index.html" => "./html/index.html",
+			"/" => "./html/index.html",
+			"/thanks" => "./html/thanks.html",
 			"404" => "./html/404.html"
 		}
 
