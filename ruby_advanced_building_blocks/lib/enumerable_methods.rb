@@ -87,17 +87,3 @@ def multiply_els arr
 	arr.my_inject{|memo,val| memo*val}
 end
 
-array = [2,3,4,5,1,2,6]
-puts(array.my_select{|s| s>=3 and s<5}.inspect)
-puts array.my_all?{|val| val>2}
-puts array.my_count
-puts array.my_count{|val| val>2}
-
-puts(array.my_map{|v| v**2}.inspect)
-
-puts(array.my_inject{|memo,val| memo+val})
-puts([1].my_inject{|memo,val| memo+val})
-puts([].my_inject{|memo,val| memo+val})
-puts(multiply_els([2,4,5]))
-
-puts(array.my_map_ver2{|v| v**2}.inspect)
